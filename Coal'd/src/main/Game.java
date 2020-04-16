@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	
-	private Handler handler;
+	public Handler handler;
 	public BufferedImageLoader imageLoader;
 	public BufferedImage background;
 	
@@ -36,6 +36,7 @@ public class Game extends Canvas implements Runnable{
 		//AudioPlayer.getMusic("Going Steady").loop();
 		
 		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player));
+		handler.addObject(new Blacklung(200, 400, ID.Blacklung));
 	}
 
 	public synchronized void start() {
@@ -109,6 +110,7 @@ public class Game extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 	}
+	
 
 	public static void main(String[] args) {
 		new Game();

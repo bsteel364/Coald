@@ -20,6 +20,28 @@ public class Player extends GameObject{
 	public void tick() {	
 		x += velX;
 		y += velY;
+		System.out.println("Player pos    x: " + x + "   y: " + y);
+
+		if(x >840 && x < 860 && y > 580) {
+			y = 60;
+		}else if(y >= 580) {
+			y = 580;
+		}
+		if(x >840 && x < 860 && y < 50) {
+			y = 570;
+		}else if(y <= 40) {
+			y = 50;
+		}
+		if(x <= 140 && 270 <= y && y <= 365) {
+			x = 1550;
+		}else if(x <= 140 ) {
+			x = 140;
+		}
+		if(x >= 1560 && 270 <= y && y <= 365) {
+			x = 150;
+		}else if(x >= 1560 ) {
+			x = 1560;
+		}
 	}
 
 	@Override

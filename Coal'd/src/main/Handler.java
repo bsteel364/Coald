@@ -30,4 +30,6 @@ public class Handler {
 	public void removeObject(GameObject object) {
 		this.objectList.remove(object);
 	}
+	
+	
 }
