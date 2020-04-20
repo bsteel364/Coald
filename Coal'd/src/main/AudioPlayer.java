@@ -8,17 +8,14 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-
-
-
-public class AudioPalyer{
+public class AudioPlayer{
 	
 	
-	public static void main (String [] args) {
-		File Going_Steady = new File ("Going_Steady.wav");	
+	/*public static void main (String [] args) {
+		File Going_Steady = new File ("Black Lung.gif");	
 		PlaySound(Going_Steady);
-	}
-	static void PlaySound(File Sound){
+	}*/
+	public static void playSound(File Sound){
 		
 		 Clip play = null;
 	        try {

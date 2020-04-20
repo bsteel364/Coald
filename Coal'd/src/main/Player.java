@@ -13,13 +13,16 @@ public class Player extends GameObject{
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		playerImage = imageLoader.loadImage("player.png");
+		playerImage = imageLoader.loadImage("Coal'd Option 2 (2).png");
 	}
 
 	@Override
 	public void tick() {	
 		x += velX;
 		y += velY;
+		
+		Game.playerX = x;
+		Game.playerY = y;
 		System.out.println("Player pos    x: " + x + "   y: " + y);
 
 		if(x >840 && x < 860 && y > 580) {

@@ -23,6 +23,8 @@ public class Game extends Canvas implements Runnable{
 	public Handler handler;
 	public BufferedImageLoader imageLoader;
 	public BufferedImage background;
+	public static int playerX = 0;
+	public static int playerY = 0;
 	
 	public Game() {
 		handler = new Handler();
@@ -32,8 +34,8 @@ public class Game extends Canvas implements Runnable{
 		imageLoader = new BufferedImageLoader();
 		
 		background = imageLoader.loadImage("room1.png");
-		//AudioPlayer.load();
-		//AudioPlayer.getMusic("Going Steady").loop();
+		File Going_Steady = new File ("Going_Steady.wav");
+		AudioPlayer.playSound(Going_Steady);
 		
 		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player));
 		handler.addObject(new Blacklung(200, 400, ID.Blacklung));
