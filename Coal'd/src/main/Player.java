@@ -13,13 +13,20 @@ public class Player extends GameObject{
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		playerImage = imageLoader.loadImage("Coal'd Option 2 (2).png");
+		playerImage = imageLoader.loadImage("player.png");
 	}
+	
 
 	@Override
 	public void tick() {	
 		x += velX;
 		y += velY;
+		
+		if(velX > 0) {
+			playerImage = imageLoader.loadImage("playerRotate.png");
+		}else if(velX < 0) {
+			playerImage = imageLoader.loadImage("player.png");
+		}
 		
 		Game.playerX = x;
 		Game.playerY = y;

@@ -12,8 +12,8 @@ public class AudioPlayer{
 	
 	
 	/*public static void main (String [] args) {
-		File Going_Steady = new File ("Black Lung.gif");	
-		PlaySound(Going_Steady);
+		File Going_Steady = new File ("Coal'd FINAL DRAFT.wav");	
+		playSound(Going_Steady);
 	}*/
 	public static void playSound(File Sound){
 		
