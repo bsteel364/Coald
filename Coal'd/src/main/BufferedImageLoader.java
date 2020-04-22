@@ -12,7 +12,7 @@ public class BufferedImageLoader {
 	public BufferedImage loadImage(String filepath) {
 		try {
 			image = ImageIO.read(getClass().getResource(filepath));
-			System.out.println(filepath + " loaded successfully");
+			//System.out.println(filepath + " loaded successfully");
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println(filepath + " not loaded");

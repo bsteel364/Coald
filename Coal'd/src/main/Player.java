@@ -30,7 +30,7 @@ public class Player extends GameObject{
 		
 		Game.playerX = x;
 		Game.playerY = y;
-		System.out.println("Player pos    x: " + x + "   y: " + y);
+		//System.out.println("Player pos    x: " + x + "   y: " + y);
 
 		if(x >840 && x < 860 && y > 580) {
 			y = 60;

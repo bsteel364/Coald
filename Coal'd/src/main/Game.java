@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	
+	public HUD hud;
 	public Handler handler;
 	public BufferedImageLoader imageLoader;
 	public BufferedImage background;
@@ -33,6 +34,7 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "COAL'D", this);
 		imageLoader = new BufferedImageLoader();
 		
+		hud = new HUD();
 		background = imageLoader.loadImage("room1.png");
 		File music = new File ("Coal'd FINAL DRAFT.wav");
 		AudioPlayer.playSound(music);
@@ -62,6 +64,7 @@ public class Game extends Canvas implements Runnable{
 	 * GAME LOOP, DO NOT EDIT!
 	 */
 	public void run() {
+		this.requestFocus();	// so that you dont have to click o the window
 		long lastTime = System.nanoTime();
 		double ticks = 60.0;
 		double nanoseconds = 1000000000 /  ticks;
@@ -94,6 +97,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private void tick() {
 		handler.tick();
+		hud.tick();
 	}
 	
 	private void render(){
@@ -108,6 +112,7 @@ public class Game extends Canvas implements Runnable{
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.drawImage(background, 0, 0, null);
 		handler.render(g);
+		hud.render();
 		
 		g.dispose();
 		bs.show();
