@@ -26,11 +26,15 @@ public class Blacklung extends GameObject{
 		
 		if(Game.playerX > x) {
 			velX = 2;
-		}else {
+		}else if(Game.playerX == x){
+			velX = 0;
+		}else{
 			velX = -2;
 		}
 		if(Game.playerY > y) {
 			velY = 2;
+		}else if(Game.playerY == y){
+			velY = 0;
 		}else {
 			velY = -2;
 		}

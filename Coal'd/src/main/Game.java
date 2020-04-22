@@ -57,8 +57,7 @@ public class Game extends Canvas implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	
 	/*
 	 * GAME LOOP, DO NOT EDIT!

@@ -10,10 +10,15 @@ public class Player extends GameObject{
 
 	private BufferedImage playerImage;
 	private BufferedImageLoader imageLoader = new BufferedImageLoader();
+	private long animationTimer = 0;
+	private int animationCycle = 0;
+	
+	private static int HEIGHT = Game.HEIGHT;
+	private static int WIDTH = Game.WIDTH;
 	
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		playerImage = imageLoader.loadImage("player.png");
+		playerImage = imageLoader.loadImage("playerleft.png");
 	}
 	
 
@@ -22,35 +27,50 @@ public class Player extends GameObject{
 		x += velX;
 		y += velY;
 		
-		if(velX > 0) {
-			playerImage = imageLoader.loadImage("playerRotate.png");
+		if(System.currentTimeMillis() - animationTimer > 100) {
+			animationTimer = System.currentTimeMillis();
+			animationCycle++;
+			//System.out.println(animationTimer);
+		}
+		 
+		if(velX == 0 && velY == 0) {
+			playerImage = imageLoader.loadImage("playerleft.png");
 		}else if(velX < 0) {
-			playerImage = imageLoader.loadImage("player.png");
+			
+			if(animationCycle %3 == 0) {
+				playerImage = imageLoader.loadImage("playerleft.png");
+			}else if(animationCycle %3 == 1) {
+				playerImage = imageLoader.loadImage("legdownleft.png");
+			}else {
+				playerImage = imageLoader.loadImage("legupleft.png");
+			}			
+		}
+		else if(velX > 0 || velY != 0) {
+			if(animationCycle %3 == 0) {
+				playerImage = imageLoader.loadImage("playerright.png");
+			}else if(animationCycle %3 == 1) {
+				playerImage = imageLoader.loadImage("legdownright.png");
+			}else {
+				playerImage = imageLoader.loadImage("legupright.png");
+			}
+			
 		}
 		
 		Game.playerX = x;
 		Game.playerY = y;
-		//System.out.println("Player pos    x: " + x + "   y: " + y);
+		System.out.println("Player pos    x: " + x + "   y: " + y);
 
-		if(x >840 && x < 860 && y > 580) {
-			y = 60;
-		}else if(y >= 580) {
-			y = 580;
+		if(x <= WIDTH/12 ) {
+			x = WIDTH/12;
 		}
-		if(x >840 && x < 860 && y < 50) {
-			y = 570;
-		}else if(y <= 40) {
-			y = 50;
+		if(x >= WIDTH - WIDTH/7) {
+			x = WIDTH - WIDTH/7;
 		}
-		if(x <= 140 && 270 <= y && y <= 365) {
-			x = 1550;
-		}else if(x <= 140 ) {
-			x = 140;
+		if(y >= HEIGHT - HEIGHT/12*(5.5)) {
+			y = HEIGHT - (int)(HEIGHT/12*(5.5));
 		}
-		if(x >= 1560 && 270 <= y && y <= 365) {
-			x = 150;
-		}else if(x >= 1560 ) {
-			x = 1560;
+		if(y <= HEIGHT/8) {
+			y = HEIGHT/8;
 		}
 	}
 
