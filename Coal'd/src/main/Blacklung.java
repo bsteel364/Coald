@@ -1,3 +1,8 @@
+/*
+ *  Author - Brandon Steel
+ *  April 2020
+ *  bsteel364@gmail.com
+ */
 package main;
 
 import java.awt.Color;
@@ -24,6 +29,7 @@ public class Blacklung extends GameObject{
 		x += velX;
 		y += velY;
 		
+		////////////////// chase player /////////////////////////////
 		if(Game.playerX > x) {
 			velX = 2;
 		}else if(Game.playerX == x){
@@ -39,11 +45,13 @@ public class Blacklung extends GameObject{
 			velY = -2;
 		}
 		
+		//////////////////// collision detection ////////////////////////
 		if(x >= Game.playerX - 50 && x <= Game.playerX + 80 && y >= Game.playerY - 50 && y <= Game.playerY + 100 ) {
-			this.x = 0;
-			this.y = 0;
+			this.x = x - 100;
+			Game.getHUD().removeCanary();
 		}
 
+		///////////////// boundry detection (probably unnecessary) ///////////////
 		if(x >840 && x < 860 && y > 580) {
 			y = 60;
 		}else if(y >= 580) {

@@ -1,3 +1,9 @@
+/*
+ *  Author - Brandon Steel
+ *  April 2020
+ *  bsteel364@gmail.com
+ */
+
 package main;
 
 import java.awt.Color;
@@ -9,6 +15,7 @@ import javax.swing.ImageIcon;
 public class Player extends GameObject{
 
 	private BufferedImage playerImage;
+	private BufferedImage standingPlayerImage;
 	private BufferedImageLoader imageLoader = new BufferedImageLoader();
 	private long animationTimer = 0;
 	private int animationCycle = 0;
@@ -19,6 +26,7 @@ public class Player extends GameObject{
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
 		playerImage = imageLoader.loadImage("playerleft.png");
+		standingPlayerImage = imageLoader.loadImage("playerleft.png");
 	}
 	
 
@@ -27,6 +35,9 @@ public class Player extends GameObject{
 		x += velX;
 		y += velY;
 		
+		
+		////////////// ANIMATIONS /////////////////////
+		
 		if(System.currentTimeMillis() - animationTimer > 100) {
 			animationTimer = System.currentTimeMillis();
 			animationCycle++;
@@ -34,9 +45,9 @@ public class Player extends GameObject{
 		}
 		 
 		if(velX == 0 && velY == 0) {
-			playerImage = imageLoader.loadImage("playerleft.png");
-		}else if(velX < 0) {
-			
+			playerImage = standingPlayerImage;
+		}else if(velX < 0 || velX == 0) {
+			standingPlayerImage = imageLoader.loadImage("playerleft.png");
 			if(animationCycle %3 == 0) {
 				playerImage = imageLoader.loadImage("playerleft.png");
 			}else if(animationCycle %3 == 1) {
@@ -46,6 +57,7 @@ public class Player extends GameObject{
 			}			
 		}
 		else if(velX > 0 || velY != 0) {
+			standingPlayerImage = imageLoader.loadImage("playerright.png");
 			if(animationCycle %3 == 0) {
 				playerImage = imageLoader.loadImage("playerright.png");
 			}else if(animationCycle %3 == 1) {
@@ -60,6 +72,7 @@ public class Player extends GameObject{
 		Game.playerY = y;
 		System.out.println("Player pos    x: " + x + "   y: " + y);
 
+		///////////////// Boundry Detection /////////////////////////
 		if(x <= WIDTH/12 ) {
 			x = WIDTH/12;
 		}

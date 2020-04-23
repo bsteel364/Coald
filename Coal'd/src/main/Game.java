@@ -1,3 +1,8 @@
+/*
+ *  Author - Brandon Steel
+ *  April 2020
+ *  bsteel364@gmail.com
+ */
 package main;
 
 import java.awt.Canvas;
@@ -20,7 +25,7 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	
-	public HUD hud;
+	public static HUD hud;
 	public Handler handler;
 	public BufferedImageLoader imageLoader;
 	public BufferedImage background;
@@ -29,18 +34,20 @@ public class Game extends Canvas implements Runnable{
 	
 	public Game() {
 		handler = new Handler();
+		hud = new HUD();
 		this.addKeyListener(new KeyInput(handler));
 		
 		new Window(WIDTH, HEIGHT, "COAL'D", this);
 		imageLoader = new BufferedImageLoader();
 		
-		hud = new HUD();
+		
 		background = imageLoader.loadImage("room1.png");
 		File music = new File ("Coal'd FINAL DRAFT.wav");
 		AudioPlayer.playSound(music);
 		
 		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player));
 		handler.addObject(new Blacklung(200, 400, ID.Blacklung));
+		handler.addObject(new Sloth(1200, 200, ID.Sloth));
 	}
 
 	public synchronized void start() {
@@ -110,11 +117,16 @@ public class Game extends Canvas implements Runnable{
 		//g.setColor(Color.black);
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.drawImage(background, 0, 0, null);
+		hud.render(g);
 		handler.render(g);
-		hud.render();
+		
 		
 		g.dispose();
 		bs.show();
+	}
+	
+	public static HUD getHUD() {
+		return hud;
 	}
 	
 
