@@ -45,9 +45,13 @@ public class Game extends Canvas implements Runnable{
 		File music = new File ("Coal'd FINAL DRAFT.wav");
 		AudioPlayer.playSound(music);
 		
-		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player));
-		handler.addObject(new Blacklung(200, 400, ID.Blacklung));
+		
+		handler.addObject(new Blacklung(155, 175, ID.Blacklung, handler));
+		handler.addObject(new Blacklung(170, 650, ID.Blacklung, handler));
+		handler.addObject(new Blacklung(1600, 653, ID.Blacklung, handler));
+		handler.addObject(new Blacklung(1600, 170, ID.Blacklung, handler));
 		handler.addObject(new Sloth(1200, 200, ID.Sloth));
+		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player, this.handler));
 	}
 
 	public synchronized void start() {
@@ -130,8 +134,11 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 
+
 	public static void main(String[] args) {
 		new Game();
 	}
+	
+	
 		
 }

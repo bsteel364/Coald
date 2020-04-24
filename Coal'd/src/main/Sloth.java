@@ -27,7 +27,7 @@ public class Sloth extends GameObject {
 
 		x += velX;
 		y += velY;
-
+		System.out.println(x + " " + y);
 		if (x <= Game.WIDTH / 12) {
 			velX = 3;
 			slothImage = imageLoader.loadImage("slothright.png");
@@ -38,8 +38,13 @@ public class Sloth extends GameObject {
 		}
 
 		//////////////////// collision detection ////////////////////////
-		if (x >= Game.playerX - 50 && x <= Game.playerX + 80 && y >= Game.playerY && y <= Game.playerY + 400) {
-			this.x = x - 100;
+		if (x >= Game.playerX - 100 && x <= Game.playerX + 10 && y >= Game.playerY -130 && y <= Game.playerY + 400) {
+			if(x > Game.playerX) {
+				this.x = x + 100;
+			}else {
+				this.x = x - 100;
+			}
+			
 			Game.getHUD().removeCanary();
 			Game.getHUD().removeCanary();
 		}

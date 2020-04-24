@@ -32,6 +32,15 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_D) {
 					tempObject.setVelocityX(5);
 				}
+				if(key == KeyEvent.VK_SPACE) {
+					Projectile temp = new Projectile(Game.playerX + 50, Game.playerY + 25, ID.Projectile);
+					handler.addObject(temp);
+					if(Player.playerFacing == "left") {
+						temp.velX = -10;
+					}else {
+						temp.velX = 10;
+					}
+				}
 			}
 		}
 	}

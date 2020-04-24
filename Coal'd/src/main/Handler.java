@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class Handler {
 
-	LinkedList<GameObject> objectList = new LinkedList<GameObject>();
+	public LinkedList<GameObject> objectList = new LinkedList<GameObject>();
 	
 	//Iterates through all game objects and makes each one tick()
 	public void tick() {

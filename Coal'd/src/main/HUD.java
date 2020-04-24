@@ -26,6 +26,10 @@ public class HUD {
 		lantern = imageLoader.loadImage("lantern1.png");
 	}
 	
+	public int getLives() {
+		return this.lifeCount;
+	}
+	
 	public void tick() {
 		
 	}

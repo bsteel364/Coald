@@ -8,6 +8,7 @@ package main;
 public enum ID {
 
 	Player(),
+	Projectile(),
 	Sloth(),
 	Blacklung();
 }
