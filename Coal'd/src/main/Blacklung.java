@@ -28,16 +28,18 @@ public class Blacklung extends GameObject {
 	}
 
 	public void collision() {
-		for (int i = 0; i < handler.objectList.size(); i++) {
-			GameObject temp = handler.objectList.get(i);
+		if (!dead) {
+			for (int i = 0; i < handler.objectList.size(); i++) {
+				GameObject temp = handler.objectList.get(i);
 
-			if (temp.getID() == ID.Projectile) {
-				if (temp.getX() >= x && temp.getX() < x + 130 && temp.getY() >= y && temp.getY() < y + 130) {
-					blacklungImage = imageLoader.loadImage("coal_pile.png.png");
-					velX = 0;
-					velY = 0;
-					dead = true;
-					handler.objectList.remove(temp);
+				if (temp.getID() == ID.Projectile) {
+					if (temp.getX() >= x && temp.getX() < x + 130 && temp.getY() >= y && temp.getY() < y + 130) {
+						blacklungImage = imageLoader.loadImage("coal_pile.png.png");
+						velX = 0;
+						velY = 0;
+						dead = true;
+						handler.objectList.remove(temp);
+					}
 				}
 			}
 		}
