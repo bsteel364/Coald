@@ -9,6 +9,7 @@ public enum ID {
 
 	Player(),
 	Projectile(),
+	CoalBarron(),
 	Sloth(),
 	Blacklung();
 }

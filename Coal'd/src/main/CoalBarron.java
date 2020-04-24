@@ -11,25 +11,27 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class Blacklung extends GameObject {
+public class CoalBarron extends GameObject {
 
-	private BufferedImage blacklungImage;
+	private BufferedImage coalBarronImage;
 	private BufferedImageLoader imageLoader = new BufferedImageLoader();
 	private Handler handler;
 	private boolean dead;
-	private int randomVelocity;
+	public static int lives;
 
-	public Blacklung(int x, int y, ID id, Handler handler) {
+	public CoalBarron(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
-		blacklungImage = imageLoader.loadImage("New Piskel.png");
-		randomVelocity = (int) (Math.random() * 3 + 1);
+		coalBarronImage = imageLoader.loadImage("CoalBarron.png");
+		
 		dead = false;
 		this.handler = handler;
+		lives = 50;
 	}
 	
 	public boolean isDead() {
 		return dead;
 	}
+
 
 	public void collision() {
 		if (!dead) {
@@ -37,13 +39,17 @@ public class Blacklung extends GameObject {
 				GameObject temp = handler.objectList.get(i);
 
 				if (temp.getID() == ID.Projectile) {
-					if (temp.getX() >= x && temp.getX() < x + 100 && temp.getY() >= y && temp.getY() < y + 100) {
-						blacklungImage = imageLoader.loadImage("coal_pile.png.png");
-						velX = 0;
-						velY = 0;
-						dead = true;
-						Player.kills++;
+					if (temp.getX() >= x - 20 && temp.getX() < x + 300 && temp.getY() >= y && temp.getY() < y + 300) {
+						lives--;
 						handler.objectList.remove(temp);
+						if(lives <= 0) {
+							coalBarronImage = imageLoader.loadImage("Large Coal.png");
+							velX = 0;
+							velY = 0;
+							dead = true;
+						}
+						
+						
 					}
 				}
 			}
@@ -61,18 +67,18 @@ public class Blacklung extends GameObject {
 
 			////////////////// chase player /////////////////////////////
 			if (Game.playerX > x) {
-				velX = randomVelocity;
+				velX = 4;
 			} else if (Game.playerX == x) {
 				velX = 0;
 			} else {
-				velX = randomVelocity * (-1);
+				velX = 4 * (-1);
 			}
-			if (Game.playerY > y) {
-				velY = randomVelocity;
+			if (Game.playerY > y + 150) {
+				velY = 4;
 			} else if (Game.playerY == y) {
 				velY = 0;
 			} else {
-				velY = randomVelocity * (-1);
+				velY = 4 * (-1);
 			}
 
 			//////////////////// collision detection ////////////////////////
@@ -85,27 +91,7 @@ public class Blacklung extends GameObject {
 				Game.getHUD().removeCanary();
 			}
 
-			///////////////// boundry detection (probably unnecessary) ///////////////
-			if (x > 840 && x < 860 && y > 580) {
-				y = 60;
-			} else if (y >= 580) {
-				y = 580;
-			}
-			if (x > 840 && x < 860 && y < 50) {
-				y = 570;
-			} else if (y <= 40) {
-				y = 50;
-			}
-			if (x <= 140 && 270 <= y && y <= 365) {
-				x = 1550;
-			} else if (x <= 140) {
-				x = 140;
-			}
-			if (x >= 1560 && 270 <= y && y <= 365) {
-				x = 150;
-			} else if (x >= 1560) {
-				x = 1560;
-			}
+			
 		}
 	}
 
@@ -113,7 +99,8 @@ public class Blacklung extends GameObject {
 	public void render(Graphics g) {
 		// g.setColor(Color.white);
 		// g.fillRect(x, y, 132, 132);
-		g.drawImage(blacklungImage, x, y, null);
+		g.drawImage(coalBarronImage, x, y, null);
 	}
+
 
 }

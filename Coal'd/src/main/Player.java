@@ -23,6 +23,7 @@ public class Player extends GameObject {
     private Handler handler;
 	private static int HEIGHT = Game.HEIGHT;
 	private static int WIDTH = Game.WIDTH;
+	public static int kills;	//  <-------  This is terrible code :(
 
 	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -30,6 +31,7 @@ public class Player extends GameObject {
 		standingPlayerImage = imageLoader.loadImage("playerleft.png");
 		playerFacing = "left";
 		this.handler = handler;
+		kills = 0;
 	}
 
 	@Override

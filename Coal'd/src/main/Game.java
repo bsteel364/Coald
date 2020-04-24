@@ -31,6 +31,7 @@ public class Game extends Canvas implements Runnable{
 	public BufferedImage background;
 	public static int playerX = 0;
 	public static int playerY = 0;
+	private boolean bossSpawn;
 	
 	public Game() {
 		handler = new Handler();
@@ -44,13 +45,13 @@ public class Game extends Canvas implements Runnable{
 		background = imageLoader.loadImage("room1.png");
 		File music = new File ("Coal'd FINAL DRAFT.wav");
 		AudioPlayer.playSound(music);
-		
+		bossSpawn = false;
 		
 		handler.addObject(new Blacklung(155, 175, ID.Blacklung, handler));
 		handler.addObject(new Blacklung(170, 650, ID.Blacklung, handler));
 		handler.addObject(new Blacklung(1600, 653, ID.Blacklung, handler));
 		handler.addObject(new Blacklung(1600, 170, ID.Blacklung, handler));
-		handler.addObject(new Sloth(1200, 200, ID.Sloth));
+		handler.addObject(new Sloth(1200, 200, ID.Sloth, handler));
 		handler.addObject(new Player((WIDTH / 2) - 30 , (HEIGHT / 2) - 30, ID.Player, this.handler));
 	}
 
@@ -108,6 +109,11 @@ public class Game extends Canvas implements Runnable{
 	private void tick() {
 		handler.tick();
 		hud.tick();
+		
+		if(Player.kills >= 5 && !bossSpawn) {
+			handler.addObject(new CoalBarron(200, 200, ID.CoalBarron, this.handler));
+			bossSpawn = true;
+		}
 	}
 	
 	private void render(){
