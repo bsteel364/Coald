@@ -62,7 +62,7 @@ public class HUD {
 			g.setColor(Color.RED);
 			g.fillRect(550, 40, coalBarronHealth * 8, 30);
 			g.setColor(Color.gray);
-			g.drawString("COAL BARON", 800, 30);
+			g.drawString("COAL BARON", 900, 30);
 		}
 		
 		g.drawImage(lantern, Game.WIDTH - Game.WIDTH/5, Game.HEIGHT - Game.HEIGHT/3 - 20, null);
